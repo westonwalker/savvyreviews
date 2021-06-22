@@ -14,7 +14,7 @@ class CreateInitialTables extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->after('password', function ($table) {
+            $table->after('avatar_original', function ($table) {
                 $table->unsignedBigInteger('plan_id')->nullable();
                 $table->boolean('is_active')->default(true);
             });

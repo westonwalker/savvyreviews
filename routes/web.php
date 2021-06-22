@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::group(['prefix' => 'dashboard'], function () {
+    Route::get('/', function () {
+        return view('dashboard');
+    })->middleware(['auth'])->name('dashboard');
+
+    Route::get('/reviews', [ReviewController::class, 'index'])->middleware(['auth'])->name('reviews.index');
+
+});
 
 require __DIR__.'/auth.php';

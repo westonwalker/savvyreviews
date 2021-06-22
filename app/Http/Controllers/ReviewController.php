@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Reviews;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Auth;
+use Google_Client;
+use Illuminate\Support\Facades\Storage;
 
 class ReviewController extends Controller
 {
@@ -14,7 +18,14 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        //
+        
+        $client = new \Google_Client();
+        $creds = Storage::get('client_secrets.json');
+        $client->setAuthConfig($creds);
+        // $reviews = [];
+        // $response = Http::withBasicAuth(Auth::user()->email, Auth::user()->remember_token)->get('https://mybusinessaccountmanagement.googleapis.com/v1/accounts');
+        // return $response->json();
+        // return view('reviews.index', ['reviews' => $reviews]);
     }
 
     /**

@@ -25,7 +25,7 @@
         <div class="flex flex-col w-0 flex-1 overflow-hidden">
 
 
-            <header class="bg-gray-50">
+            <header class="bg-gray-50 p-6">
                 {{ $header }}
             </header>
             <main class="bg-white">
