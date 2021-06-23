@@ -19,7 +19,9 @@ class GoogleController extends Controller
      */
     public function login()
     {
-        return Socialite::driver('google')->redirect();
+        $parameters = ['access_type' => 'offline', "prompt" => "consent select_account"];
+        $scopes = ['https://www.googleapis.com/auth/business.manage'];
+        return Socialite::driver('google')->scopes($scopes)->with($parameters)->redirect();
     }
 
     /**
@@ -46,6 +48,9 @@ class GoogleController extends Controller
             $newUser->google_id = $user->id;
             $newUser->avatar = $user->avatar;
             $newUser->avatar_original = $user->avatar_original;
+            $newUser->google_token = $user->token;
+            $newUser->google_refresh_token = $user->refreshToken;
+            $newUser->google_token_expire = $user->expiresIn;
             $newUser->save();
 
             event(new Registered($newUser));

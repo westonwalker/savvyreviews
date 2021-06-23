@@ -21,7 +21,11 @@ class CreateUsersTable extends Migration
             $table->string('google_id');
             $table->string('avatar');
             $table->string('avatar_original');
+            $table->string('google_token');
+            $table->string('google_refresh_token')->nullable();
+            $table->string('google_token_expire')->nullable();
             $table->string('password')->nullable();
+            $table->boolean('is_free_forever')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
