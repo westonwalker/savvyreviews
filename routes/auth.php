@@ -15,7 +15,7 @@ Route::get('/login', [GoogleController::class, 'login'])
                 ->middleware('guest')
                 ->name('login');
 
-Route::get('/register', [GoogleController::class, 'login'])
+Route::get('/register', [GoogleController::class, 'register'])
                 ->middleware('guest')
                 ->name('register');
                 

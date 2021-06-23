@@ -24,12 +24,19 @@ class GoogleController extends Controller
         return Socialite::driver('google')->scopes($scopes)->with($parameters)->redirect();
     }
 
+    public function register()
+    {
+        $parameters = ['access_type' => 'offline', "prompt" => "consent select_account"];
+        $scopes = ['https://www.googleapis.com/auth/business.manage'];
+        return Socialite::driver('google')->scopes($scopes)->with($parameters)->redirect();
+    }
+
     /**
      * Obtain the user information from Google.
      *
      * @return \Illuminate\Http\Response
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback(Request $request)
     {
         try {
             $user = Socialite::driver('google')->user();

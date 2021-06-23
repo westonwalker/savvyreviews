@@ -16,7 +16,7 @@ use App\Http\Controllers\ReviewController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/', function () {
